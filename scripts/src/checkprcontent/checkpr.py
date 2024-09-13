@@ -113,7 +113,7 @@ def get_file_match_compiled_patterns():
 
     pattern = re.compile(base + r"/.*")
     reportpattern = re.compile(base + r"/report.yaml")
-    tarballpattern = re.compile(base + r"/(.*\.tgz$)")
+    tarballpattern = re.compile(base + r"/(.*\.tgz)")
     return pattern, reportpattern, tarballpattern
 
 
@@ -200,7 +200,7 @@ def ensure_only_chart_is_modified(api_url, repository, branch):
         gitutils.add_output("organization", organization)
         gitutils.add_output("chart-name", chart)
 
-        if not semver.VersionInfo.isvalid(version):
+        if not semver.VersionInfo.is_valid(version):
             msg = (
                 f"[ERROR] Helm chart version is not a valid semantic version: {version}"
             )
